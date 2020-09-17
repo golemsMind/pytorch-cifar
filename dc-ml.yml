@@ -1,0 +1,20 @@
+version: '2'
+services:
+
+  cre-glue:
+    image: tamboraorg/creglue:0.2020
+    container_name: creglue
+    volumes:
+     - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  cre-ml:
+    image: tamboraorg/cretensorflow:0.2020
+    container_name: creml
+    volumes:
+     - ./volumes/code:/cre/code
+    volumes_from:
+     - cre-glue
+
+# docker-compose --file dc-ml.yml up -d
+
+     
